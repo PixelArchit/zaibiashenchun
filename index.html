@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="zh" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vi</title>
+  <meta name="Description" content="Home Page of iissnan">
+  <meta name="color-scheme" content="dark light">
+  <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+  <link rel="stylesheet" type="text/css" href="assets/main.css"/>
+</head>
+
+<body>
+  <div class="vi">
+    <h1 class="animate-slide-in-down"> 灾变生存先行版 </h1>
+    <div class="quote">
+      <span class="quote-line quote-line-start animate-slide-in-left"></span>
+      <span class="quote-icon quote-icon-start animate-slide-in-down">
+        <i class="icon icon-quotes-left"></i>
+      </span>
+      <p class="quote-content animate-slide-in-down">《灾变生存》是一个扣人心弦的末日生存类Minecraft整合包，将玩家投入到一个充满挑战和危险的世界中。在这个世界中，玩家必须收集物资、精心策划并与朋友合作，以抵御不断袭来的尸潮。
+
+        整合包的独特特点使得《灾变生存》成为了一款引人入胜的游戏体验。首先，整合包增加了数量庞大的敌对生物，其中包括血腥僵尸、恶毒的爬行者和无情的骷髅战士等。这些怪物不仅拥有更高的生命值和攻击力，而且会迅速增加其数量，给玩家带来前所未有的压力。
+        
+        为了应对这种压力，玩家需要不断搜索资源，并合理管理其物资储备。整合包增加了大量的新物品、装备和工具，可以帮助玩家更好地抵御尸潮的侵袭。从强化的武器和防具到能够提供补给和治疗的药水，玩家可以根据自己的策略进行选择和升级，增强自身的生存能力。
+        
+        在《灾变生存》中，玩家不仅可以独自闯荡末日世界，还可以与朋友们组成团队并采取合作策略，共同生存。整合包支持多人游戏，使得朋友们可以共同抵御来自四面八方的威胁。通过协作，密切配合和战术思考，玩家们可以互相支持，并共同打造一个不可战胜的生存堡垒。
+        
+        此外，整合包还包括了经过精心设计的地图和世界生成特性。破败的城市、废弃的避难所和神秘的实验室等场景将为玩家带来全新的探索与冒险体验。不断变化的环境和挑战性的任务将考验玩家的智慧、勇气和决策能力。
+        
+        《灾变生存》整合包为Minecraft玩家带来了一个真正引人入胜的末日生存世界。玩家将面对无尽的尸潮挑战，收集资源，合理利用装备，与朋友合作，创造一个属于自己的生存传奇。准备好迎接这场未知而严峻的挑战了吗？加入《灾变生存》，探索生存的极限！</p>
+      <span class="quote-icon quote-icon-end animate-slide-in-up">
+        <i class="icon icon-quotes-right"></i>
+      </span>
+      <span class="quote-line quote-line-end animate-slide-in-right"></span>
+    </div>
+    <div class="links">
+      <a href="https://pan.baidu.com/s/1UoTIPXjTWHP2tkhLIJJxRg" class="animate-slide-in-down">百度网盘</a>
+      <a href="https://afdian.net/a/PixelArchitect" class="animate-slide-in-down">获取提取码</a>
+    </div>
+    <div class="location">
+      <span class="location-icon animate-slide-in-up">
+        <i class="icon icon-map-pin"></i>
+      </span>
+      <span class="location-text animate-slide-in-down">XiaMen - China</span>
+    </div>
+    <div class="relocating">
+      Navigating to: <span class="relocate-location"></span>...
+    </div>
+  </div>
+
+  <script src="assets/jquery-3.3.1.min.js"></script>
+  <script>
+    $(function () {
+      var SLIDE_IN_DOWN = { opacity: 1, top: 0 };
+      var SLIDE_IN_UP = { opacity: 1, bottom: 0 };
+      var SLIDE_IN_LEFT = { left: 0 };
+      var SLIDE_IN_RIGHT = { right: 0 };
+
+      registerCheatCode();
+      executeAnimations();
+
+      function executeAnimations() {
+        $.when()
+          .then(animateTitle)
+          .then(animateQuote)
+          .then(animateLinks)
+          .then(animateLocation);
+      }
+
+      function animateTitle() {
+        return animate('h1', SLIDE_IN_DOWN);
+      }
+
+      function animateQuote() {
+        return $.when(
+          animate('.quote-line-start', SLIDE_IN_LEFT),
+          animate('.quote-line-end',SLIDE_IN_RIGHT),
+          animate('.quote-icon-start', SLIDE_IN_DOWN),
+          animate('.quote-icon-end', SLIDE_IN_UP)
+        )
+          .then(function () {
+            return animate('.quote-content', SLIDE_IN_DOWN);
+          })
+          .then(function () {
+            return animate('.quote-author', SLIDE_IN_DOWN);
+          });
+      }
+
+      function animateLinks() {
+        var DELAY_STEP = 200;
+        var elements = $('.links a');
+        var concurrent = $.makeArray(elements)
+          .map(function (element, index) {
+            return animate(element, SLIDE_IN_DOWN, index * DELAY_STEP);
+          });
+
+        return $.when.apply($, concurrent);
+      }
+
+      function animateLocation() {
+        return $.when(
+          animate('.location-icon', SLIDE_IN_UP),
+          animate('.location-text', SLIDE_IN_DOWN)
+        );
+      }
+
+      function animate(selector, properties, delay, options) {
+        delay = delay || 0;
+        return $(selector).delay(delay)
+          .animate(properties, options)
+          .promise();
+      }
+
+      function registerCheatCode() {
+        $(document.body).on('keydown', function (event) {
+          var KEY_B = 66;
+
+          if (event.which === KEY_B) {
+            $('.relocate-location').text('Bookmark Page');
+            $('.relocating').css('opacity', 1);
+
+            window.setTimeout(function () {
+              window.location.href = '/bookmarks.html';
+            }, 1000);
+          }
+        });
+      }
+    });
+  </script>
+</body>
+</html>
